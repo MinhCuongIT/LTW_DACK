@@ -1,0 +1,52 @@
+﻿<Window x:Class="QL_BanHang.CustomerManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:QL_BanHang"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Quản lý khách hàng" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Thẻ thông tin của khách hàng-->
+        <materialDesign:Card Grid.Row="0" Margin="5">
+            <WrapPanel Margin="0 0 0 10">
+                <TextBox Name="txtTenKhachHang"  Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Name="txtCmnd" Margin="5 5 15 5" materialDesign:HintAssist.Hint="CMND" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <DatePicker Name="dpNgaySinh" Margin="5 5 15 5" Width="100" materialDesign:HintAssist.Hint="Ngày sinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <TextBox Name="txtDiaChi" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Name="txtDienThoai" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            </WrapPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="1" Margin="5">
+            <WrapPanel>
+                <Button Name="btnThem" Click="BtnThem_Click" Content="Thêm" Margin="5" Width="100"/>
+                <Button Name="btnCapNhat" Click="BtnCapNhat_Click" Content="Cập nhật" Margin="5" Width="100"/>
+                <Button Name="btnXoa" Click="BtnXoa_Click" Content="Xóa" Margin="5" Width="100"/>
+                <Button Name="btnXoaTrang" Click="BtnXoaTrang_Click" Content="Xóa trắng" Background="LightCoral" Margin="5" Width="100"/>
+            </WrapPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="2">
+            <!--Lọc sản phẩm-->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Lọc khách hàng: " Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                <ComboBox Name="cbLocKhachHang" SelectionChanged="CbLocKhachHang_SelectionChanged" materialDesign:HintAssist.Hint="Chọn tiêu chí lọc"/>
+                <TextBox Visibility="Hidden" Name="txtLocKhachHang" VerticalAlignment="Center" TextChanged="TxtLocKhachHang_TextChanged"  materialDesign:HintAssist.Hint="Nhập thông tin để lọc"/>
+                <DatePicker Visibility="Hidden" SelectedDateFormat="Short" Name="dpFromDate" Width="100" materialDesign:HintAssist.Hint="Từ ngày" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker Visibility="Hidden" SelectedDateFormat="Short" Name="dpToDate"  Width="100" materialDesign:HintAssist.Hint="Đến ngày" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <Button Name="btnLocTheoNgaySinh" Margin="10 0 0 0" Visibility="Hidden" Click="BtnLocTheoNgaySinh_Click" Content="Lọc theo ngày sinh"/>
+            </StackPanel>
+        </materialDesign:Card>
+        <DataGrid Grid.Row="3" Name="dgCustomer" CanUserSortColumns="False" CurrentCellChanged ="DgCustomer_CurrentCellChanged"  CanUserAddRows="False"   Margin="5"/>
+        
+    </Grid>
+</Window>

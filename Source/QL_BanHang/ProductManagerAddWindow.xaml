@@ -1,0 +1,40 @@
+﻿<Window x:Class="QL_BanHang.ProductManagerAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:QL_BanHang"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Thêm product mới" Height="600" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="0" Margin="5">
+            <WrapPanel Margin="0 0 0 10">
+                <ComboBox Name="cbCategory" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Chọn Category" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                <TextBox  Name="txtProductName" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên Product" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold" />
+                <TextBox  Name="txtGiaGoc" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá gốc" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold" />
+            </WrapPanel>
+        </materialDesign:Card>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBox Name="txtManHinh" Margin="5" materialDesign:HintAssist.Hint="Màn hình" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtHeDieuHanh" Margin="5" materialDesign:HintAssist.Hint="Hệ điều hành" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtCameraTruoc" Margin="5" materialDesign:HintAssist.Hint="Camera trước" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtCameraSau" Margin="5" materialDesign:HintAssist.Hint="Camera sau" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtCPU" Margin="5" materialDesign:HintAssist.Hint="CPU" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtRAM" Margin="5" materialDesign:HintAssist.Hint="RAM" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtROM" Margin="5" materialDesign:HintAssist.Hint="Bộ nhớ trong" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtSim" Margin="5" materialDesign:HintAssist.Hint="Sim" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Name="txtPin" Margin="5" materialDesign:HintAssist.Hint="Pin" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <WrapPanel Margin="0 0 0 10">
+                <Button Click="BtnThemMoi_Click" Name="btnThemMoi" Margin="5 5 15 5" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Thêm mới một product" Content="Thêm mới"/>
+                <Button Click="BtnXoaTrang_Click" Name="btnXoaTrang" Margin="5 5 15 5" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Xóa trống các trường" Content="Xóa trắng"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>

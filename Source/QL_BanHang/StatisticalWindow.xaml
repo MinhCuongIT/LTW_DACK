@@ -1,0 +1,83 @@
+﻿<Window x:Class="QL_BanHang.StatisticalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:local="clr-namespace:QL_BanHang"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Thống kê" Height="700" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <DatePicker SelectedDateFormat="Short" Name="dpFromDate" Margin="5 5 15 5" Width="100" materialDesign:HintAssist.Hint="Từ ngày" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker Name="dpToDate" Margin="5 5 15 5" Width="100" materialDesign:HintAssist.Hint="Đến ngày" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <Button Name="btnThongKe" Click="BtnThongKe_Click" Content="Thống kê" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Thực hiện thống kê"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--Cột bên trái-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <chartingToolkit:Chart Name="pieChart" Title="Tỉ lệ giữa các mặt hàng">
+                        <chartingToolkit:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
+                    </chartingToolkit:Chart>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Thống kê lợi nhuận" Style="{StaticResource MaterialDesignHeadlineTextBlock}"/>
+                    <StackPanel Grid.Row="1">
+                        <TextBox Name="txtTongSP" Margin="10 10 10 10" materialDesign:HintAssist.Hint="Tổng số lượng sản phẩm bán được" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold"/>
+                        <TextBox Name="txtVon" Margin="10 10 10 10" materialDesign:HintAssist.Hint="Tổng tiền vốn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold"/>
+                        <TextBox Name="txtBan" Margin="10 10 10 10" materialDesign:HintAssist.Hint="Tống tiền bán được" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold"/>
+                        <TextBox Name="txtLoiNhuan" Margin="10 10 10 10" materialDesign:HintAssist.Hint="Tổng lợi nhuận sau thuế" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <!--Cột bên phải-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <chartingToolkit:Chart Name="columnChart" Title="Doanh số bán hàng">
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Key" DataContext="{Binding}" ItemsSource="{Binding}" />
+                    </chartingToolkit:Chart>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="BXH Top 10 sản phẩm bán chạy nhất" Style="{StaticResource MaterialDesignHeadlineTextBlock}"/>
+                    <Grid Grid.Row="1">
+                        <!--Chứa list bảng xếp hạnh-->
+                        <DataGrid CanUserSortColumns="False" CanUserAddRows="False" Name="dgBXH"  Margin="5"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

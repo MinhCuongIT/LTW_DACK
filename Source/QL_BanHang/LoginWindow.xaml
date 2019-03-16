@@ -1,0 +1,37 @@
+﻿<Window x:Class="QL_BanHang.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QL_BanHang"
+        mc:Ignorable="d"
+        Background="#90908E"
+        Title="Đăng Nhập" Height="500" Width="350"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded"
+        Icon="Assets/login.png"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="#222444" CornerRadius="20" Margin="20">
+        <StackPanel Margin="20">
+            <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+            <Image Source="Assets/icon.png" Width="80" Height="80"/>
+            <Separator/>
+            <Label Foreground="White" Content="_Username" Target="{Binding ElementName=txtUsername}"/>
+            <TextBox KeyDown="TxtUsername_KeyDown" ToolTip="Tên đăng nhập" Name="txtUsername" Background="#545d6a" Foreground="White" FontSize="18"/>
+            <Label Foreground="White" Content="_Password" Target="{Binding ElementName=txtPassword}"/>
+            <PasswordBox KeyDown="TxtPassword_KeyDown" ToolTip="Mật khẩu" Name="txtPassword" Background="#545d6a" Foreground="White" FontSize="18"/>
+            <Button ToolTip="Đăng nhập vào hệ thống" x:Name="btnLogin" Foreground="White" Content="Login" Height="42" Margin="80,20,92,0" Background="#3F7DE9" Click="BtnLogin_Click" FontSize="18">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="10,20,10,0">
+                <Label Content="Sign up" />
+                <Label Content="Forget password" Margin="90,0,0,0"/>
+            </StackPanel>
+            <Image x:Name="image" Height="100"/>
+        </StackPanel>
+    </Border>
+</Window>
